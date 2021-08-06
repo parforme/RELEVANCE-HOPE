@@ -12,7 +12,7 @@ def waitForService(servicNameString):
 def addPublisher(publisherName, dataType, queueSize):
     return rospy.Publisher(publisherName, dataType, queueSize)
 
-def initCommNode(moduleName):
+def initComNode(moduleName):
     rospy.init_node(moduleName, anonymous=True)
 
 def publish(publisher, data):
