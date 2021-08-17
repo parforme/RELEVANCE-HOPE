@@ -16,7 +16,7 @@ If ROS is used, then all the published topics can be found under the "hope" node
 
 - Open a console as described in the ROS installation guidlines
 - Browse to <path-to-HOPE>/devel and run setup.bat or setup.sh (on *nix systems source will also do the trick)
-- In the root of the HOPE workspace type: rosrun hope hopeMain.py
+- In the root of the HOPE workspace type: rosrun hope hopeMain.py _configFilesPath:=<absolute-path-to-config-directory>
 
 # Creating an install package
 

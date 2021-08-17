@@ -11,7 +11,7 @@ class dummyModuleRecv(module.Module):
     def callback(self, data):
         print("Got data: " + data.data)
 
-    def initModule(self):
+    def initModule(self, configFilesPath):
         print("Initializing dummy receiver module.")
         # initialize a listener node
         self.pub = databroker.addListener("dummyModule", String, self.callback)

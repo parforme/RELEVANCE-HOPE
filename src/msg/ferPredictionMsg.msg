@@ -4,4 +4,4 @@ float32 posz
 float32 pointx
 float32 pointy
 float32 pointz
-bool blocked
+bool obstructed
