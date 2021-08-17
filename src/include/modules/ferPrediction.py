@@ -16,14 +16,14 @@ class ferPrediction(module.Module):
         self.queue.put(data)
 
     def initModule(self, configFilesPath):
-        print("Initializing simplified FER prediction module.")
+        print("Initializing simplified FER prediction module for 802.11p, using QPKS and a coding rate of 1/2.")
         self.configFilesPath = configFilesPath
         jf = open(os.path.join(configFilesPath, 'pathLossModel.json'))
         print("Loading path loss model parameters...")
         self.modelParams = json.load(jf)
         jf.close()
         self.queue = queue.Queue(200)
-        print(f"Found the following model Parameters: Tx Power ({self.modelParams['transmitPower']} dB), G0 ({self.modelParams['G0']} dB), PLexp ({self.modelParams['exponent']} dB)")
+        print(f"Found the following model Parameters: Tx Power ({self.modelParams['transmitPower']} dB), G0 ({self.modelParams['G0']} dB), PLexp ({self.modelParams['exponent']} dB), Sigmoid-a ({self.modelParams['sigA']}), Sigmoid-b ({self.modelParams['sigB']})")
         databroker.addListener("ferPrediction", ferPredictionMsg, self.callback)
         self.pub = databroker.addPublisher("predictedFer", ferPredictionMsgResult, 10)
         self.start()

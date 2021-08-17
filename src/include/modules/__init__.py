@@ -12,7 +12,7 @@ moduleInstances = []
 def loadModules():
     moduleInstances.append(dummyModule.dummyModule())
     moduleInstances.append(dummyModuleRecv.dummyModuleRecv())
-    #moduleInstances.append(dummyModuleFER.dummyModuleFER()) <-- TODO: refactor to sys tests
+    #moduleInstances.append(dummyModuleFER.dummyModuleFER())  <-- TODO: refactor to sys tests
     moduleInstances.append(ferPrediction.ferPrediction())
 
 def initModules(configFilesPath):
