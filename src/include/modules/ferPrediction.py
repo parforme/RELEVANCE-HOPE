@@ -1,8 +1,9 @@
 from hsys import module
 from hsys import databroker
-from msg import ferPredictionMsg
-from msg import ferPredictionMsgResult
+from hope.msg import ferPredictionMsg
+from hope.msg import ferPredictionMsgResult
 import rospy
+import json
 
 class ferPrediction(module.Module):
     def __init__(self):
@@ -15,6 +16,11 @@ class ferPrediction(module.Module):
 
     def initModule(self):
         print("Initializing simplified FER prediction module.")
+        jf = open('pathLossModel.json')
+        print("Loading path loss model parameters")
+        self.modelParams = json.load(jf)
+        jf.close()
+        print(f"Model Parameters: Tx Power ({self.modelParams.transmitPower}), G0 ({self.modelParams.G0}), PLexp ({self.modelParams.exponent})")
         databroker.addListener("ferPrediction", ferPredictionMsg, self.callback)
         self.pub = databroker.addPublisher("predictedFer", ferPredictionMsgResult, 10)
         
