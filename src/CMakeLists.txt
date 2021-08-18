@@ -9,6 +9,8 @@ catkin_python_setup()
 add_message_files(
   FILES
   dummyMsg.msg
+  ferPredictionMsg.msg
+  ferPredictionMsgResult.msg
 )
 
 generate_messages(

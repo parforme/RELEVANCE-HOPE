@@ -9,7 +9,7 @@ class dummyModule(module.Module):
         super(dummyModule, self).__init__()
         print("Constructor of dummy module called.")
         
-    def initModule(self):
+    def initModule(self, configFilesPath):
         print("Initializing dummy module.")
         # initialize a publisher
         self.pub = databroker.addPublisher("dummyModule", String, 1)

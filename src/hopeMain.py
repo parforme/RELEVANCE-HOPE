@@ -6,8 +6,10 @@ import rospy
 def main(argv):
     # init our communication node
     hsys.databroker.initComNode('hope')
+    print(argv)
+    configFilesPath = rospy.get_param('~configFilesPath')
     modules.loadModules()
-    modules.initModules()
+    modules.initModules(configFilesPath)
     print ("Loaded and initialized HOPE modules.")
     rospy.spin()
 
