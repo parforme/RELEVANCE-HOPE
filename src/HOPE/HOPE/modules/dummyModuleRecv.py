@@ -1,12 +1,12 @@
 # This is an example HOPE module using rospy.
-from hsys import module
-from hsys import databroker
+import rclpy
+from rclpy.node import Node
 from std_msgs.msg import String
-import rospy
+
 
 class dummyModuleRecv(module.Module):
     def __init__(self):
-        super(dummyModuleRecv, self).__init__()
+        super().__init__("dummyModuleRecv")
     
     def callback(self, data):
         print("Got data: " + data.data)
@@ -14,5 +14,6 @@ class dummyModuleRecv(module.Module):
     def initModule(self, configFilesPath):
         print("Initializing dummy receiver module.")
         # initialize a listener node
-        self.pub = databroker.addListener("dummyModule", String, self.callback)
+        self.subscription = self.create_subscription(String, "dummyModule", self.callback, 10)
+
     
