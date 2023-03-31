@@ -35,6 +35,8 @@ class ferPrediction(module.Module):
                 d = numpy.sqrt((p.posx - p.pointx)**2 + (p.posy - p.pointy)**2 + (p.posz - p.pointz)**2)
                 rxPower = float(self.modelParams['transmitPower']) - (float(self.modelParams['G0']) + 10*float(self.modelParams['exponent']) * numpy.log10(d))
                 rospy.loginfo(rxPower)
+                if p.obstructed == True:
+                    rxPower -= 30
                 fer = 1 - 1/(1+numpy.exp(-1*float(self.modelParams['sigA'])*(rxPower - float(self.modelParams['sigB']))))
                 ferResult = ferPredictionMsgResult()
                 ferResult.fer = fer
